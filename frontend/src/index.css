@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-by-bg: #f7f8f5;
+  --color-by-surface: #ffffff;
+  --color-by-ink: #14201a;
+  --color-by-muted: #5c6b63;
+  --color-by-border: #e4ebe6;
+  --color-by-green: #1b7a4e;
+  --color-by-green-dark: #145c3b;
+  --color-by-green-soft: #e8f5ee;
+  --color-by-saffron: #e07a2f;
+  --color-by-saffron-soft: #fff1e6;
+  --color-by-blue: #0b3d91;
+  --color-by-blue-soft: #e8eef8;
+  --color-by-danger: #c0392b;
+  --color-by-warning: #d68910;
+  --color-by-success: #1b7a4e;
+
+  --shadow-by-card: 0 8px 24px rgba(20, 32, 26, 0.06);
+  --shadow-by-nav: 0 -4px 20px rgba(20, 32, 26, 0.08);
+  --radius-by: 1rem;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-by-ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(27, 122, 78, 0.08), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(224, 122, 47, 0.08), transparent 55%),
+      var(--color-by-bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .safe-pb {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-fade-up {
+    animation: by-fade-up 480ms ease-out both;
+  }
+}
+
+@keyframes by-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Leaflet sits above page chrome but below bottom nav (z-40) */
+.leaflet-container {
+  z-index: 0;
+  font: inherit;
+}
+
+.by-map-marker {
+  background: transparent;
+  border: none;
+}
